@@ -6,6 +6,13 @@ use image::DynamicImage;
 use image::Rgba;
 use std::io;
 
+struct Pixel<T> {
+    red:    T,
+    green:  T,
+    blue:   T,
+    alpha:  T,
+}
+
 fn main() {
     println!("image directory : ");
     let mut directory = String::new();
@@ -33,10 +40,7 @@ fn edge_detection(img: &mut DynamicImage) {
         for x in 0..width {
             let pixel: Rgba<u8> = img.get_pixel(x, y);
 
-            let mut cal_r: i32 = 0;
-            let mut cal_g: i32 = 0;
-            let mut cal_b: i32 = 0;
-            let cal_a: u8 = pixel[3];
+            let mut cal_pixel: Pixel<i64> = Pixel { red: 0, green: 0, blue: 0, alpha: pixel[3] as i64 };
             for y_mask in 0..mask_size {
                 for x_mask in 0..mask_size {
                     if x + x_mask > 0 &&
@@ -44,29 +48,29 @@ fn edge_detection(img: &mut DynamicImage) {
                        y + y_mask > 0 &&
                        y + y_mask < height {
                            let pixel2: Rgba<u8> = img.get_pixel(x + x_mask, y + y_mask);
-                           cal_r += pixel2[0] as i32 * mask[x_mask as usize][y_mask as usize];
-                           cal_g += pixel2[1] as i32 * mask[x_mask as usize][y_mask as usize];
-                           cal_b += pixel2[2] as i32 * mask[x_mask as usize][y_mask as usize];
+                           let pixel_data: Pixel<u8> = Pixel { red: pixel2[0], green: pixel2[1],  blue: pixel2[2], alpha: pixel2[3] };
+                           cal_pixel.red += pixel_data.red as i64 * mask[x_mask as usize][y_mask as usize] as i64;
+                           cal_pixel.green += pixel_data.green as i64 * mask[x_mask as usize][y_mask as usize] as i64;
+                           cal_pixel.blue += pixel_data.blue as i64 * mask[x_mask as usize][y_mask as usize] as i64;
                     }
                 }
             }
-            let cal_r: u8 = i32_to_u8(cal_r) as u8;
-            let cal_g: u8 = i32_to_u8(cal_g) as u8;
-            let cal_b: u8 = i32_to_u8(cal_b) as u8;
-            let new_color = [cal_r, cal_g, cal_b, cal_a];
+            let pixel_data: Pixel<u8> = Pixel { red: pixel[0], green: pixel[1],  blue: pixel[2], alpha: pixel[3] };
+            let cal_pixel = Pixel { red: i64_to_u8(cal_pixel.red), green: i64_to_u8(cal_pixel.green),  blue: i64_to_u8(cal_pixel.blue), alpha: pixel_data.alpha };
+            let new_color = [cal_pixel.red, cal_pixel.green, cal_pixel.blue, cal_pixel.alpha];
             let pixel: Rgba<u8> = Rgba(new_color);
             img.put_pixel(x, y, pixel);
         }
     }
 }
 
-fn i32_to_u8(value: i32) -> u8 {
+fn i64_to_u8(value: i64) -> u8 {
     let cnv_value: u8;
-    if value > 255 {
-        cnv_value = 255;
+    if value > 255i64 {
+        cnv_value = 255u8;
     }
     else if value < 0 {
-        cnv_value = 0;
+        cnv_value = 0u8;
     }
     else {
         cnv_value = value as u8;
