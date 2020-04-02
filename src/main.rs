@@ -38,7 +38,7 @@ fn edge_detection(img: &mut DynamicImage) {
             let mut cal_b: i32 = 0;
             let cal_a: u8 = pixel[3];
             for y_mask in 0..mask_size {
-                for x_mask in 00..mask_size {
+                for x_mask in 0..mask_size {
                     if x + x_mask > 0 &&
                        x + x_mask < width &&
                        y + y_mask > 0 &&
@@ -61,7 +61,7 @@ fn edge_detection(img: &mut DynamicImage) {
 }
 
 fn i32_to_u8(value: i32) -> u8 {
-    let mut cnv_value: u8 = 0;
+    let cnv_value: u8;
     if value > 255 {
         cnv_value = 255;
     }
