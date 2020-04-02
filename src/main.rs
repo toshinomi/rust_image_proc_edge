@@ -56,7 +56,7 @@ fn edge_detection(img: &mut DynamicImage) {
                 }
             }
             let pixel_data: Pixel<u8> = Pixel { red: pixel[0], green: pixel[1],  blue: pixel[2], alpha: pixel[3] };
-            let cal_pixel = Pixel { red: i64_to_u8(cal_pixel.red), green: i64_to_u8(cal_pixel.green),  blue: i64_to_u8(cal_pixel.blue), alpha: pixel_data.alpha };
+            let cal_pixel: Pixel<u8> = Pixel { red: i64_to_u8(cal_pixel.red), green: i64_to_u8(cal_pixel.green),  blue: i64_to_u8(cal_pixel.blue), alpha: pixel_data.alpha };
             let new_color = [cal_pixel.red, cal_pixel.green, cal_pixel.blue, cal_pixel.alpha];
             let pixel: Rgba<u8> = Rgba(new_color);
             img.put_pixel(x, y, pixel);
