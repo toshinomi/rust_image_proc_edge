@@ -1,5 +1,3 @@
-# rust_image_proc_edge
-
 # 概要
 【 rust_image_proc_edge 】  
 Rustの勉強として画像のエッジを検出するアルゴリズムを作成しました。   
