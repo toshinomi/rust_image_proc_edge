@@ -1,5 +1,5 @@
 [package]
-name = "RustImageProcEdge"
+name = "rust_image_proc_edge"
 version = "0.1.0"
 authors = ["toshinomi <tatsuya.oshinomi.0828@gmail.com>"]
 edition = "2018"
