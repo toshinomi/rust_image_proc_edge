@@ -20,7 +20,11 @@ pub trait GoImageProc {
 
 impl GoImageProc for ImageManager {
     fn go_image_proc(&mut self, img: &mut DynamicImage) -> &mut ImageManager {
-        let mask: [[i32; 3]; 3] = [[1,  1, 1], [1, -8, 1], [1,  1, 1]];
+        let mask: [[i32; 3]; 3] = [
+            [1,  1, 1],
+            [1, -8, 1],
+            [1,  1, 1]
+        ];
         let mask_size = mask.len() as u32;
         let (width, height) = img.dimensions();
 
