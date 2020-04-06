@@ -2,21 +2,11 @@ use image::GenericImageView;
 use image::GenericImage;
 use image::DynamicImage;
 use image::Rgba;
-use crate::module::common::i64_to_u8;
-use crate::module::common::Pixel;
-use crate::module::common::PixelKind;
-
-pub struct ImageManager {}
-
-impl ImageManager {
-    pub fn new() -> ImageManager {
-        ImageManager {} 
-    }
-}
-
-pub trait GoImageProc {
-    fn go_image_proc(&mut self, img: &mut DynamicImage) -> &mut ImageManager;
-}
+use crate::base_module::module::common::i64_to_u8;
+use crate::base_module::module::common::Pixel;
+use crate::base_module::module::common::PixelKind;
+use crate::base_module::base_image_proc::ImageManager;
+use crate::base_module::base_image_proc::GoImageProc;
 
 impl GoImageProc for ImageManager {
     fn go_image_proc(&mut self, img: &mut DynamicImage) -> &mut ImageManager {
