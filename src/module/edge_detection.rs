@@ -3,15 +3,9 @@ use image::GenericImage;
 use image::DynamicImage;
 use image::Rgba;
 use crate::module::common::i64_to_u8;
+use crate::module::Pixel;
 
-struct Pixel<T> {
-    red:    T,
-    green:  T,
-    blue:   T,
-    alpha:  T,
-}
-
-pub fn edge_detection(img: &mut DynamicImage) {
+pub fn go_image_proc(img: &mut DynamicImage) {
     let mask: [[i32; 3]; 3] = [[1,  1, 1], [1, -8, 1], [1,  1, 1]];
     let mask_size = mask.len() as u32;
     let (width, height) = img.dimensions();

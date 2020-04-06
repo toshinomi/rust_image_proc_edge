@@ -15,7 +15,7 @@ fn main() {
 
     println!("Image Processing Start!");
 
-    edge_detection::edge_detection(&mut img);
+    edge_detection::go_image_proc(&mut img);
 
     img.save(&output_image).unwrap();
 
