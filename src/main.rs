@@ -3,6 +3,7 @@ extern crate image;
 use image::DynamicImage;
 use std::io;
 use rust_image_proc_edge::module::edge_detection;
+use rust_image_proc_edge::module::edge_detection::GoImageProc;
 
 fn main() {
     println!("image directory : ");
@@ -15,7 +16,9 @@ fn main() {
 
     println!("Image Processing Start!");
 
-    edge_detection::go_image_proc(&mut img);
+    edge_detection::ImageManager::new().go_image_proc(&mut img);
+    // let mut edge = edge_detection::ImageManager::new();
+    // edge.go_image_proc(&mut img);
 
     img.save(&output_image).unwrap();
 
