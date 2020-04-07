@@ -7,15 +7,15 @@ use crate::base_module::module::common::Pixel;
 use crate::base_module::module::common::PixelKind;
 use crate::base_module::base_image_proc::GoImageProc;
 
-pub struct ImageManager {}
+pub struct EdgeDetection {}
 
-impl ImageManager {
-    pub fn new() -> ImageManager {
-        ImageManager {} 
+impl EdgeDetection {
+    pub fn new() -> EdgeDetection {
+        EdgeDetection {} 
     }
 }
 
-impl GoImageProc for ImageManager {
+impl GoImageProc for EdgeDetection {
     fn go_image_proc(&mut self, img: &mut DynamicImage) {
         let mask: [[i32; 3]; 3] = [
             [1,  1, 1],

@@ -16,7 +16,7 @@ fn main() {
 
     println!("Image Processing Start!");
 
-    let mut edge = edge_detection::ImageManager::new();
+    let mut edge = edge_detection::EdgeDetection::new();
     edge.go_image_proc(&mut img);
 
     img.save(&output_image).unwrap();
