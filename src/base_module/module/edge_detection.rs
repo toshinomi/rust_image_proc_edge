@@ -5,11 +5,18 @@ use image::Rgba;
 use crate::base_module::module::common::i64_to_u8;
 use crate::base_module::module::common::Pixel;
 use crate::base_module::module::common::PixelKind;
-use crate::base_module::base_image_proc::ImageManager;
 use crate::base_module::base_image_proc::GoImageProc;
 
+pub struct ImageManager {}
+
+impl ImageManager {
+    pub fn new() -> ImageManager {
+        ImageManager {} 
+    }
+}
+
 impl GoImageProc for ImageManager {
-    fn go_image_proc(&mut self, img: &mut DynamicImage) -> &mut ImageManager {
+    fn go_image_proc(&mut self, img: &mut DynamicImage) {
         let mask: [[i32; 3]; 3] = [
             [1,  1, 1],
             [1, -8, 1],
@@ -67,6 +74,5 @@ impl GoImageProc for ImageManager {
                 img.put_pixel(x, y, pixel);
             }
         }
-        self
     }
 }
