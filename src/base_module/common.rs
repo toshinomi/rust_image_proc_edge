@@ -42,16 +42,23 @@ impl<T> Pixel<T> {
     }
 }
 
-pub fn i64_to_u8(value: i64) -> u8 {
-    let cnv_value: u8;
-    if value > 255i64 {
-        cnv_value = 255u8;
+pub trait PixelSumDataToU8 {
+    fn to_u8(self) -> u8;
+}
+
+impl PixelSumDataToU8 for i64 {
+    fn to_u8(self) -> u8 {
+        let value = self as i64;
+        let cnv_value: u8;
+        if value > 255i64 {
+            cnv_value = 255u8;
+        }
+        else if value < 0 {
+            cnv_value = 0u8;
+        }
+        else {
+            cnv_value = value as u8;
+        }
+        cnv_value
     }
-    else if value < 0 {
-        cnv_value = 0u8;
-    }
-    else {
-        cnv_value = value as u8;
-    }
-    cnv_value
 }

@@ -2,9 +2,9 @@ use image::GenericImageView;
 use image::GenericImage;
 use image::DynamicImage;
 use image::Rgba;
-use crate::base_module::module::common::i64_to_u8;
-use crate::base_module::module::common::Pixel;
-use crate::base_module::module::common::PixelKind;
+use crate::base_module::common::PixelSumDataToU8;
+use crate::base_module::common::Pixel;
+use crate::base_module::common::PixelKind;
 use crate::base_module::base_image_proc::GoImageProc;
 
 pub struct EdgeDetection {}
@@ -59,9 +59,9 @@ impl GoImageProc for EdgeDetection {
                     pixel[PixelKind::Alpha as usize]
                 );
                 let mut cal_pixel: Pixel<u8> = Pixel::new(
-                    i64_to_u8(cal_pixel.get_red().clone()),
-                    i64_to_u8(cal_pixel.get_green().clone()),
-                    i64_to_u8(cal_pixel.get_blue().clone()),
+                    PixelSumDataToU8::to_u8(cal_pixel.get_red().clone()),
+                    PixelSumDataToU8::to_u8(cal_pixel.get_green().clone()),
+                    PixelSumDataToU8::to_u8(cal_pixel.get_blue().clone()),
                     pixel_data.get_alpha().clone()
                 );
                 let new_color = [
