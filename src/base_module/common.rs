@@ -48,16 +48,15 @@ pub trait PixelSumDataToU8 {
 
 impl PixelSumDataToU8 for i64 {
     fn to_u8(self) -> u8 {
-        let value = self as i64;
         let cnv_value: u8;
-        if value > 255i64 {
+        if self > 255i64 {
             cnv_value = 255u8;
         }
-        else if value < 0 {
+        else if self < 0 {
             cnv_value = 0u8;
         }
         else {
-            cnv_value = value as u8;
+            cnv_value = self as u8;
         }
         cnv_value
     }
