@@ -5,7 +5,7 @@ use image::Rgba;
 use crate::base_module::common::PixelSumData;
 use crate::base_module::common::Pixel;
 use crate::base_module::common::PixelKind;
-use crate::base_module::base_image_proc::GoImageProc;
+use crate::base_module::base_image_proc::GoImageProcessing;
 
 pub struct EdgeDetection {}
 
@@ -15,19 +15,19 @@ impl EdgeDetection {
     }
 }
 
-impl GoImageProc for EdgeDetection {
-    fn go_image_proc(&mut self, img: &mut DynamicImage) {
+impl GoImageProcessing for EdgeDetection {
+    fn go_image_processing(&mut self, image: &mut DynamicImage) {
         let mask: [[i32; 3]; 3] = [
             [1,  1, 1],
             [1, -8, 1],
             [1,  1, 1]
         ];
         let mask_size = mask.len() as u32;
-        let (width, height) = img.dimensions();
+        let (width, height) = image.dimensions();
 
         for y in 0..height {
             for x in 0..width {
-                let pixel: Rgba<u8> = img.get_pixel(x, y);
+                let pixel: Rgba<u8> = image.get_pixel(x, y);
 
                 let mut cal_pixel: Pixel<i64> = Pixel::new(0, 0, 0, pixel[PixelKind::Alpha as usize] as i64);
                 for y_mask in 0..mask_size {
@@ -36,7 +36,7 @@ impl GoImageProc for EdgeDetection {
                         x + x_mask < width &&
                         y + y_mask > 0 &&
                         y + y_mask < height {
-                            let pixel2: Rgba<u8> = img.get_pixel(x + x_mask, y + y_mask);
+                            let pixel2: Rgba<u8> = image.get_pixel(x + x_mask, y + y_mask);
                             let mut pixel_data: Pixel<u8> = Pixel::new(
                                 pixel2[PixelKind::Red as usize],
                                 pixel2[PixelKind::Green as usize], 
@@ -71,7 +71,7 @@ impl GoImageProc for EdgeDetection {
                     cal_pixel.get_alpha().clone()
                 ];
                 let pixel: Rgba<u8> = Rgba(new_color);
-                img.put_pixel(x, y, pixel);
+                image.put_pixel(x, y, pixel);
             }
         }
     }
