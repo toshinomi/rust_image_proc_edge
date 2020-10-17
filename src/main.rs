@@ -2,7 +2,7 @@ extern crate image;
 
 use image::DynamicImage;
 use std::io;
-use rust_image_proc_edge::base_module::module::edge_detection;
+use rust_image_proc_edge::module::edge_detection;
 use rust_image_proc_edge::base_module::base_image_proc::GoImageProcessing;
 
 fn main() {

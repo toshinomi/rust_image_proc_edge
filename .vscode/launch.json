@@ -7,37 +7,8 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rust_image_proc_edge'",
-            "cargo": {
-                "args": [
-                    "build",
-                    "--bin=rust_image_proc_edge",
-                    "--package=rust_image_proc_edge"
-                ],
-                "filter": {
-                    "name": "rust_image_proc_edge",
-                    "kind": "bin"
-                }
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug unit tests in executable 'rust_image_proc_edge'",
-            "cargo": {
-                "args": [
-                    "test",
-                    "--no-run",
-                    "--bin=rust_image_proc_edge",
-                    "--package=rust_image_proc_edge"
-                ],
-                "filter": {
-                    "name": "rust_image_proc_edge",
-                    "kind": "bin"
-                }
-            },
+            "name": "Debug",
+            "program": "${workspaceFolder}/target/debug/rust_image_proc_edge",
             "args": [],
             "cwd": "${workspaceFolder}"
         }
