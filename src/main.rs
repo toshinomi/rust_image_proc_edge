@@ -3,6 +3,7 @@ extern crate image;
 use image::DynamicImage;
 use std::io;
 use rust_image_proc_edge::module::edge_detection;
+use rust_image_proc_edge::module::binarization;
 use rust_image_proc_edge::base_module::base_image_proc::GoImageProcessing;
 
 fn main() {
@@ -18,6 +19,8 @@ fn main() {
 
     let mut edge = edge_detection::EdgeDetection::new();
     edge.go_image_processing(&mut image);
+    // let mut binarization = binarization::Binarization::new(127);
+    // binarization.go_image_processing(&mut image);
 
     image.save(&output_image).unwrap();
 
