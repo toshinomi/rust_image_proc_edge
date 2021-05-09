@@ -5,6 +5,7 @@ use std::io;
 use rust_image_proc_edge::module::edge_detection;
 use rust_image_proc_edge::module::binarization;
 use rust_image_proc_edge::module::color_reversal;
+use rust_image_proc_edge::module::gray_scale;
 use rust_image_proc_edge::base_module::base_image_proc::GoImageProcessing;
 
 fn main() {
@@ -24,6 +25,8 @@ fn main() {
     // binarization.go_image_processing(&mut image);
     // let mut color_reversal = color_reversal::ColorReversal::new();
     // color_reversal.go_image_processing(&mut image);
+    // let mut gray_scale = gray_scale::GrayScale::new();
+    // gray_scale.go_image_processing(&mut image);
 
     image.save(&output_image).unwrap();
 
