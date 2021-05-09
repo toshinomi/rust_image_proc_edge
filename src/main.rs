@@ -6,6 +6,7 @@ use rust_image_proc_edge::module::edge_detection;
 use rust_image_proc_edge::module::binarization;
 use rust_image_proc_edge::module::color_reversal;
 use rust_image_proc_edge::module::gray_scale;
+use rust_image_proc_edge::module::gray_scale_2diff;
 use rust_image_proc_edge::base_module::base_image_proc::GoImageProcessing;
 
 fn main() {
@@ -27,6 +28,8 @@ fn main() {
     // color_reversal.go_image_processing(&mut image);
     // let mut gray_scale = gray_scale::GrayScale::new();
     // gray_scale.go_image_processing(&mut image);
+    // let mut gray_scale_2diff = gray_scale_2diff::GrayScale2Diff::new();
+    // gray_scale_2diff.go_image_processing(&mut image);
 
     image.save(&output_image).unwrap();
 
